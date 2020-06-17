@@ -2,6 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
+# Defines what information is neccessary to create and
+# login to an account, also handles any errors.
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), 
     Length(min=2, max=20)])

@@ -1,3 +1,5 @@
+// This defines how the application is launched in debug
+// mode.
 {
     "configurations": [
         {

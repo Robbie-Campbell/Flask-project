@@ -1,16 +1,23 @@
+<!-- The main header of each of the html pages, this setsnthe title, style and 
+    nav present on each of the web-sites different pages-->
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
+        <!-- Allows the title to be set from app.py-->
         {% if title %}
             <title>Flask blog - {{ title }}</title>
         {% else %}
             <title>Flask blog</title>
         {% endif %}
+        <!-- The styling links-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
     </head>
     <body>
+        <!-- The main navbar styling is located here, bootstrap is heavily 
+            Utilised for the consistency of the @media styling.-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="{{url_for('home')}}">Rab's website</a>
@@ -31,11 +38,12 @@
                     </li>
                 </ul>
                     <div class="navbar-nav account-options">
-                        <a href="/login" class="nav-item nav-link">Login</a>
+                        <a href="{{url_for('login')}}" class="nav-item nav-link">Login</a>
                         <a href="{{url_for('register')}}" class="nav-item nav-link">Register</a>
                 </div>
             </div>
         </nav>
+        <!-- Defines the styles of and displays flashed messages if there are any-->
         <div class="body-content container">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -46,14 +54,13 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
+            <!-- The main content of the pages -->
             {% block content %}
             {% endblock %}
         </div>
         <hr/>
-        <footer>
-            <p>© 2018</p>
-        </footer>
     </div>
+    <!-- Interactive features-->
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

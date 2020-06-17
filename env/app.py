@@ -3,13 +3,14 @@ from forms import RegisterForm, LoginForm
 from datetime import datetime
 import re
 
+# The main loop that runs the website
 app = Flask(__name__)
 print(" * http://127.0.0.1:5000/about")
 
-
+################# MUST BE UPDATED ON RELEASE #######################
 app.config['SECRET_KEY'] = 'b9457a3518aa6d425fff061cbd1678406698da0dc218abffcd6cc19820a431a8'
 
-
+# Sample data
 posts = [
     {
         'author':'Robbie Campbell',
@@ -25,12 +26,12 @@ posts = [
     }
 ]
 
+# The url routes for all of the webpages
 @app.route("/")
 @app.route("/home/")
 def home():
     return render_template("home.html", posts=posts, title="Home")
 
-# New functions
 @app.route("/about/")
 def about():
     return render_template("about.html", title="About")
@@ -39,6 +40,7 @@ def about():
 def contact():
     return render_template("contact.html", title="Contact")
 
+# The url routes and functions to flash for registration and login forms
 @app.route("/register/", methods=["GET","POST"])
 def register():
     form = RegisterForm()
@@ -47,8 +49,14 @@ def register():
         return redirect(url_for('home'))
     return render_template("register.html", title="Register", form=form)
 
-@app.route("/login/")
+@app.route("/login/", methods=["GET","POST"])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == "admin@blog.com" and form.password.data == "password":
+            flash(f'Logged in successfully!',"success")
+            return redirect(url_for('home'))
+    else:
+        flash("Login unsuccessful, please try again.", "danger")
     return render_template("login.html", title="Login", form=form)
     
