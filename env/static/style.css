@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: url("https://i.pinimg.com/originals/cb/10/9d/cb109d5d1402ae804422a89aa168da00.jpg");
+    object-fit: contain;
+}
+.container{
+    background:rgba(255, 255, 255, 0.2);
+}
+
+.body-content {
+    padding: 5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.article{
+    background:rgba(255, 255, 255, 0.9);
+    padding:20px;
+    border: 1px solid grey;
+    margin: 20px;
+    transition: background 1s ease;
+}
+
+.article:hover{
+    background:white;
+}
+.open-blog{
+    border-top: 1px solid gray;
+    text-align: right;
+}
+
+.open-blog button{
+    margin-top: 10px;
+}

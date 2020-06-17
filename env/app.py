@@ -1,0 +1,54 @@
+from flask import Flask, render_template, flash, redirect, url_for
+from forms import RegisterForm, LoginForm
+from datetime import datetime
+import re
+
+app = Flask(__name__)
+print(" * http://127.0.0.1:5000/about")
+
+
+app.config['SECRET_KEY'] = 'b9457a3518aa6d425fff061cbd1678406698da0dc218abffcd6cc19820a431a8'
+
+
+posts = [
+    {
+        'author':'Robbie Campbell',
+        'title':'Planned website',
+        'content':"Let's make a blog!",
+        'date_posted': "17 June 2020",
+    },
+    {
+        'author':'Ron Campbell',
+        'title':'This website',
+        'content':"Let's make a blog!",
+        'date_posted': "16 June 2020"
+    }
+]
+
+@app.route("/")
+@app.route("/home/")
+def home():
+    return render_template("home.html", posts=posts, title="Home")
+
+# New functions
+@app.route("/about/")
+def about():
+    return render_template("about.html", title="About")
+
+@app.route("/contact/")
+def contact():
+    return render_template("contact.html", title="Contact")
+
+@app.route("/register/", methods=["GET","POST"])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!',"success")
+        return redirect(url_for('home'))
+    return render_template("register.html", title="Register", form=form)
+
+@app.route("/login/")
+def login():
+    form = LoginForm()
+    return render_template("login.html", title="Login", form=form)
+    
