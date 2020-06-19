@@ -41,3 +41,8 @@ body{
 .open-blog button{
     margin-top: 10px;
 }
+
+.rounded-circle{
+    width: 130px;
+    height: 130px;
+}
