@@ -8,6 +8,10 @@
 body{
     background-image: url("https://i.pinimg.com/originals/cb/10/9d/cb109d5d1402ae804422a89aa168da00.jpg");
     object-fit: contain;
+    font-family: serif;
+    background-attachment: fixed;
+    -webkit-transition: background-image 1s ease-in-out;
+    transition: background-image 1s ease-in-out;
 }
 .container{
     background:rgba(255, 255, 255, 0.2);
@@ -16,16 +20,16 @@ body{
 /* Set the font */
 .body-content {
     padding: 5px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top:5vh;
 }
 
 /* Set the main content styling */
 .article{
-    background:rgba(255, 255, 255, 0.9);
+    background-color:rgba(255, 255, 255, 0.9);
     padding:20px;
     border: 1px solid black;
     margin: 20px;
-    transition: background 1s ease;
+    transition: background-color 1s ease;
 }
 
 .article:hover{
@@ -33,8 +37,10 @@ body{
 }
 
 /* Styling for the read more button */
-.open-blog{
+.main-content{
     border-top: 1px solid gray;
+}
+.open-blog{
     text-align: right;
 }
 
@@ -43,6 +49,17 @@ body{
 }
 
 .rounded-circle{
-    width: 130px;
-    height: 130px;
+    width: 125px;
+    height: 125px;
+}
+.card-area{
+    display: flex;
+    background-color: white;
+    height:40vh;
+    margin-top: 20vh;
+}
+.card{
+    margin: 2vw;
+    margin-top: 5vh;
+    height:30vh;
 }

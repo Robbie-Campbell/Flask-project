@@ -3,33 +3,17 @@ import secrets
 from PIL import Image
 from flask import render_template, request, flash, redirect, url_for
 from main_project import app, db, bcrypt
-from main_project.forms import RegisterForm, LoginForm, UpdateAccountForm
+from main_project.forms import RegisterForm, LoginForm, UpdateAccountForm, PostForm
 from main_project.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-
-
-# Sample data
-posts = [
-    {
-        'author': 'Robbie Campbell',
-        'title': 'Planned website',
-        'content': "Let's make a blog!",
-        'date_posted': "17 June 2020",
-    },
-    {
-        'author': 'Ron Campbell',
-        'title': 'This website',
-        'content': "Let's make a blog!",
-        'date_posted': "16 June 2020"
-    }
-]
 
 
 # The url routes for all of the webpages
 @app.route("/")
 @app.route("/home/")
 def home():
-    return render_template("home.html", posts=posts, title="Home")
+    post = Post.query.all()
+    return render_template("home.html", posts=post, title="Home")
 
 
 @app.route("/about/")
@@ -114,3 +98,15 @@ def account():
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pictures/' + current_user.image_file)
     return render_template("account.html", title="Account", image_file=image_file, form=form)
+
+@app.route("/post/new", methods=["GET","POST"])
+@login_required
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash("Post has been created!", "success")
+        return redirect(url_for('home'))
+    return render_template('create_post.html', title="New post", form=form)

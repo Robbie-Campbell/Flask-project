@@ -39,6 +39,7 @@
                 </ul>
                     <div class="navbar-nav account-options">
                         {% if current_user.is_authenticated %}
+                            <a href="{{url_for('new_post')}}" class="nav-item nav-link">New Post</a>
                             <a href="{{url_for('account')}}" class="nav-item nav-link">Account</a>
                             <a href="{{url_for('logout')}}" class="nav-item nav-link">Logout</a>
                         {% else %}
@@ -62,6 +63,26 @@
             <!-- The main content of the pages -->
             {% block content %}
             {% endblock %}
+        </div>
+        <div class="card-area text-center">
+            <div class="card">
+                <h1 class=title>Title</h1>
+                <p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Facilis veniam quo, dolore incidunt corporis culpa consequatur aut ipsa 
+                    modi placeat nihil odit impedit autem dolorem perspiciatis dolorum! Animi, fugiat aut!</p>
+            </div>
+            <div class="card">
+                <h1 class=title>Title</h1>
+                <p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Facilis veniam quo, dolore incidunt corporis culpa consequatur aut ipsa 
+                    modi placeat nihil odit impedit autem dolorem perspiciatis dolorum! Animi, fugiat aut!</p>
+            </div>
+            <div class="card">
+                <h1 class=title>Title</h1>
+                <p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Facilis veniam quo, dolore incidunt corporis culpa consequatur aut ipsa 
+                    modi placeat nihil odit impedit autem dolorem perspiciatis dolorum! Animi, fugiat aut!</p>
+            </div>
         </div>
         <hr/>
     </div>

@@ -4,9 +4,17 @@
     {% block content %}
         {% for post in posts %}
         <div class="article">
-            <h1>{{ post.title }}</h1>
-            <p>By {{ post.author }} on {{ post.date_posted }}</p>
-            <p>{{ post.content }}</p>
+            <div style="display:flex;">
+                <img src="{{ url_for('static', filename='profile_pictures/' + post.author.image_file)}}" alt="profile picture" class="rounded-circle article-img">
+                <div class="author-items ml-4">
+                    <h1>{{ post.title }}</h1>
+                    <h5>By {{ post.author.username }} </h5>
+                    <p class="text-secondary">on {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+                </div>
+            </div>
+            <div class="main-content pt-4 mt-2">
+                <p>{{ post.content }}</p>
+            </div>
             <div class="open-blog">
                 <button class="btn btn-primary">Read more</button>
             </div>
